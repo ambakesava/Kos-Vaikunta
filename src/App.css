@@ -40,8 +40,78 @@ ul {
 
 /* Navbar */
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
     padding: 20px 0;
+    transition: background-color 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+}
+
+/* Over hero: solid background matching page bg */
+.navbar--hero {
+    background-color: var(--whiteBg);
+    box-shadow: none;
+}
+
+.navbar--hero .logo {
+    color: var(--black);
+}
+
+.navbar--hero .logo span {
+    color: var(--green);
+}
+
+.navbar--hero .nav-links a {
+    color: var(--black);
+}
+
+.navbar--hero .nav-links a:hover {
+    color: var(--blue);
+}
+
+.navbar--hero .btn-outline {
+    border-color: var(--black);
+    color: var(--black);
+}
+
+.navbar--hero .btn-outline:hover {
+    background-color: var(--black);
+    color: var(--whiteContent);
+}
+
+/* After scroll: solid white style with shadow */
+.navbar--scrolled {
     background-color: var(--whiteContent);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 14px 0;
+}
+
+.navbar--scrolled .logo {
+    color: var(--black);
+}
+
+.navbar--scrolled .logo span {
+    color: var(--green);
+}
+
+.navbar--scrolled .nav-links a {
+    color: var(--black);
+}
+
+.navbar--scrolled .nav-links a:hover {
+    color: var(--blue);
+}
+
+.navbar--scrolled .btn-outline {
+    border-color: var(--black);
+    color: var(--black);
+}
+
+.navbar--scrolled .btn-outline:hover {
+    background-color: var(--black);
+    color: var(--whiteContent);
 }
 
 .nav-container {
@@ -116,7 +186,7 @@ ul {
 /* Hero Section */
 .hero {
     position: relative;
-    padding: 20px 0 60px;
+    padding: 90px 0 60px; /* top accounts for fixed navbar (~80px) */
     overflow: hidden;
     min-height: var(--screen);
     display: flex;

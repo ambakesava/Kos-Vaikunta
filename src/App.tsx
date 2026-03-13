@@ -1,24 +1,45 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 import { motion } from 'framer-motion';
 import 'lenis/dist/lenis.css';
 import './App.css';
 
 function App() {
+  const lenisRef = useRef<Lenis | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => {
-    const lenis = new Lenis();
+    const isMobile = window.innerWidth <= 768;
+    const lenis = new Lenis({
+      lerp: isMobile ? 0.15 : 0.1,
+      touchMultiplier: isMobile ? 3 : 2,
+    });
+    lenisRef.current = lenis;
 
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
-
     requestAnimationFrame(raf);
+
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 80);
+    };
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
       lenis.destroy();
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const target = document.getElementById(targetId);
+    if (target && lenisRef.current) {
+      lenisRef.current.scrollTo(target, { offset: -80, duration: 1.5 });
+    }
+  };
   const [activeSlide, setActiveSlide] = useState(0);
 
   const facilityItems = [
@@ -32,7 +53,7 @@ function App() {
       id: 2,
       title: "Parkir Motor",
       desc: "Parkir motor yang dapat melindungi motor dari terik matahari dan hujan.",
-      img: "/Kos Image/WhatsApp Image 2026-03-12 at 14.16.43.jpeg"
+      img: "/Kos Image/Parkiran bersih.png"
     },
     {
       id: 3,
@@ -63,15 +84,15 @@ function App() {
   return (
     <>
       {/* Header / Navbar */}
-      <nav className="navbar">
+      <nav className={`navbar${scrolled ? ' navbar--scrolled' : ' navbar--hero'}`}>
         <div className="nav-container">
           <h1 className="logo">Kos <span>Vaikunta</span></h1>
           
           <ul className="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">Informasi</a></li>
-            <li><a href="#highlights">Galeri</a></li>
-            <li><a href="#amenities">Fasilitas</a></li>
+            <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')}>Home</a></li>
+            <li><a href="#about" onClick={(e) => handleNavClick(e, 'about')}>Informasi</a></li>
+            <li><a href="#highlights" onClick={(e) => handleNavClick(e, 'highlights')}>Galeri</a></li>
+            <li><a href="#amenities" onClick={(e) => handleNavClick(e, 'amenities')}>Fasilitas</a></li>
           </ul>
 
           <div className="nav-buttons">
