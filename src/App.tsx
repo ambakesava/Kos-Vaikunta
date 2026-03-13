@@ -1,7 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Lenis from 'lenis';
+import { motion } from 'framer-motion';
+import 'lenis/dist/lenis.css';
 import './App.css';
 
 function App() {
+  useEffect(() => {
+    const lenis = new Lenis();
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
   const [activeSlide, setActiveSlide] = useState(0);
 
   const facilityItems = [
@@ -65,7 +82,13 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section className="hero" id="home">
+      <motion.section 
+        className="hero" 
+        id="home"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         {/* Geometric Shapes */}
         <div className="shape shape-left"></div>
         <div className="shape shape-right"></div>
@@ -87,10 +110,17 @@ function App() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Content Section */}
-      <section className="property-info" id="about">
+      <motion.section 
+        className="property-info" 
+        id="about"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true, amount: 0.2 }}
+      >
         {/* Geometric Shape */}
         <div className="shape shape-bottom-right"></div>
         
@@ -137,10 +167,17 @@ function App() {
             <img src="/Kos Image/IMG20220726104420.jpg" alt="Suasana Kamar atau Halaman Kos" />
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Property Highlights */}
-      <section className="property-highlights" id="highlights">
+      <motion.section 
+        className="property-highlights" 
+        id="highlights"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <div className="highlights-container">
           <h2 className="section-title">Property Highlights</h2>
           <div className="highlights-grid">
@@ -167,10 +204,17 @@ function App() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Fasilitas 3D Carousel Section */}
-      <section className="fasilitas-section" id="amenities">
+      <motion.section 
+        className="fasilitas-section" 
+        id="amenities"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <div className="fasilitas-container">
           <h2 className="section-title" style={{ textAlign: "center" }}>Fasilitas Kamar</h2>
           <div className="carousel-wrapper">
@@ -216,7 +260,7 @@ function App() {
             </button>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Footer Section */}
       <footer className="site-footer">
