@@ -152,47 +152,6 @@ ul {
     gap: 15px;
 }
 
-/* WhatsApp contact di navbar */
-.nav-wa {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    text-decoration: none;
-    transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.nav-wa:hover {
-    opacity: 0.8;
-    transform: translateY(-1px);
-}
-
-.nav-wa__icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background-color: #25D366;
-    color: #fff;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-}
-
-.nav-wa__text {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--black);
-    white-space: nowrap;
-}
-
-.navbar--scrolled .nav-wa__text {
-    color: var(--black);
-}
-
-.navbar--hero .nav-wa__text {
-    color: var(--black);
-}
 
 .btn-outline, .btn-solid {
     padding: 10px 24px;
@@ -1032,11 +991,6 @@ ul {
 
     /* Sembunyikan tombol navbar di mobile */
     .nav-buttons {
-        display: none;
-    }
-
-    /* Sembunyikan WA contact navbar di mobile (ada floating button) */
-    .nav-wa {
         display: none;
     }
 

@@ -50,31 +50,31 @@ function App() {
       id: 1,
       title: "Teras Depan Kamar",
       desc: "Ruang tambahan untuk meletakkan tanaman hias atau sekadar kursi untuk bersantai di udara terbuka.",
-      img: "/Kos Image/IMG_1343.JPG"
+      img: "/Kos Image/webp/IMG_1343.webp"
     },
     {
       id: 2,
       title: "Parkir Motor",
       desc: "Parkir motor yang dapat melindungi motor dari terik matahari dan hujan.",
-      img: "/Kos Image/Parkiran bersih.png"
+      img: "/Kos Image/webp/Parkiran bersih.webp"
     },
     {
       id: 3,
       title: "Kamar Mandi",
       desc: "Kamar Mandi dengan fasilitas toilet duduk, Wastafel dan Shower, 2mx1.425m.",
-      img: "/Kos Image/IMG_1347(1).JPG"
+      img: "/Kos Image/webp/IMG_1347(1).webp"
     },
     {
       id: 4,
       title: "Kamar",
       desc: "Kamar yang nyaman dan bersih berukuran 3mx3.5m.",
-      img: "/Kos Image/IMG_1350.JPG"
+      img: "/Kos Image/webp/IMG_1350.webp"
     },
     {
       id: 5,
       title: "Dapur",
       desc: "Dapur & wastafel yang dapat menunjang kebutuhan masak anda",
-      img: "/Kos Image/IMG_1349(1).JPG"
+      img: "/Kos Image/webp/IMG_1349(1).webp"
     }
   ];
 
@@ -102,12 +102,6 @@ function App() {
             <a href="https://maps.app.goo.gl/nZQJyQgdPfpoVzJ27" className="btn-outline" target="_blank" rel="noreferrer">Peta Lokasi</a>
             <a href="https://wa.me/628123627647" className="btn-solid" target="_blank" rel="noreferrer">WhatsApp</a>
           </div>
-
-          {/* WhatsApp contact — desktop only */}
-          <a href="https://wa.me/628123627647" className="nav-wa" target="_blank" rel="noreferrer">
-            <span className="nav-wa__icon"><i className="fab fa-whatsapp"></i></span>
-            <span className="nav-wa__text">+62 812-3627-647</span>
-          </a>
 
           {/* Hamburger Button — mobile only */}
           <button
@@ -157,7 +151,7 @@ function App() {
         
         <div className="hero-image-wrapper">
           {/* Hero Background Image (Fasad Kos) */}
-          <img className="hero-bg" src="/Kos Image/front_viewhd.png" alt="Tampak Depan Rumah Kos" />
+          <img className="hero-bg" src="/Kos Image/webp/front_viewhd.webp" alt="Tampak Depan Rumah Kos" fetchPriority="high" />
           <div className="hero-overlay"></div>
           
           <div className="hero-content">
@@ -226,7 +220,7 @@ function App() {
           </div>
           
           <div className="property-image mobile-hide">
-            <img src="/Kos Image/IMG20220726104420.jpg" alt="Suasana Kamar atau Halaman Kos" />
+            <img src="/Kos Image/webp/IMG20220726104420.webp" alt="Suasana Kamar atau Halaman Kos" loading="lazy" />
           </div>
         </div>
       </motion.section>
@@ -245,21 +239,21 @@ function App() {
           {/* 3 card utama selalu tampil */}
           <div className="highlights-grid">
             <div className="highlight-card">
-              <img src="/Kos Image/backyard.jpg" alt="Halaman Samping" />
+              <img src="/Kos Image/webp/backyard.webp" alt="Halaman Samping" loading="lazy" />
               <div className="highlight-info">
                 <h3>Halaman Samping</h3>
                 <p>Halaman lingkungan yang asri tepat berada depan pintu kamar anda.</p>
               </div>
             </div>
             <div className="highlight-card">
-              <img src="/Kos Image/IMG20230801070610(1).jpg" alt="Tanaman Rindang" />
+              <img src="/Kos Image/webp/IMG20230801070610(1).webp" alt="Tanaman Rindang" loading="lazy" />
               <div className="highlight-info">
                 <h3>Tanaman yang Rindang</h3>
                 <p>Suasana yang sejuk dan nyaman.</p>
               </div>
             </div>
             <div className="highlight-card">
-              <img src="/Kos Image/IMG20250614203930.jpg" alt="Lampu Taman" />
+              <img src="/Kos Image/webp/IMG20250614203930.webp" alt="Lampu Taman" loading="lazy" />
               <div className="highlight-info">
                 <h3>Lampu Taman</h3>
                 <p>Pencahayaan yang nyaman di malam hari.</p>
@@ -271,28 +265,28 @@ function App() {
           <div className={`highlights-extra-wrapper${showMore ? ' is-open' : ''}`}>
             <div className="highlights-grid">
               <div className="highlight-card">
-                <img src="/Kos Image/IMG20220726101804.jpg" alt="Suasana Pagi" />
+                <img src="/Kos Image/webp/IMG20220726101804.webp" alt="Suasana Pagi" loading="lazy" />
                 <div className="highlight-info">
                   <h3>Suasana Pagi</h3>
                   <p>Lingkungan yang tenang dan asri di pagi hari.</p>
                 </div>
               </div>
               <div className="highlight-card">
-                <img src="/Kos Image/IMG20220726101834.jpg" alt="Area Terbuka" />
+                <img src="/Kos Image/webp/IMG20220726101834.webp" alt="Area Terbuka" loading="lazy" />
                 <div className="highlight-info">
                   <h3>Area Terbuka</h3>
                   <p>Ruang terbuka hijau yang membuat udara segar setiap saat.</p>
                 </div>
               </div>
               <div className="highlight-card">
-                <img src="/Kos Image/IMG20220726102844.jpg" alt="Lingkungan Nyaman" />
+                <img src="/Kos Image/webp/IMG20220726102844.webp" alt="Lingkungan Nyaman" loading="lazy" />
                 <div className="highlight-info">
                   <h3>Lingkungan Nyaman</h3>
                   <p>Suasana tenang ideal untuk istirahat dan produktivitas.</p>
                 </div>
               </div>
               <div className="highlight-card highlight-card--schematic">
-                <img src="/Kos Image/image.png" alt="Denah Kamar" />
+                <img src="/Kos Image/webp/image.webp" alt="Denah Kamar" loading="lazy" />
               </div>
             </div>
           </div>
