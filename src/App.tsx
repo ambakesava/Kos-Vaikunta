@@ -43,6 +43,7 @@ function App() {
     }
   };
   const [activeSlide, setActiveSlide] = useState(0);
+  const [showMore, setShowMore] = useState(false);
 
   const facilityItems = [
     {
@@ -101,6 +102,12 @@ function App() {
             <a href="https://maps.app.goo.gl/nZQJyQgdPfpoVzJ27" className="btn-outline" target="_blank" rel="noreferrer">Peta Lokasi</a>
             <a href="https://wa.me/628123627647" className="btn-solid" target="_blank" rel="noreferrer">WhatsApp</a>
           </div>
+
+          {/* WhatsApp contact — desktop only */}
+          <a href="https://wa.me/628123627647" className="nav-wa" target="_blank" rel="noreferrer">
+            <span className="nav-wa__icon"><i className="fab fa-whatsapp"></i></span>
+            <span className="nav-wa__text">+62 812-3627-647</span>
+          </a>
 
           {/* Hamburger Button — mobile only */}
           <button
@@ -235,29 +242,88 @@ function App() {
       >
         <div className="highlights-container">
           <h2 className="section-title">Property Highlights</h2>
+          {/* 3 card utama selalu tampil */}
           <div className="highlights-grid">
             <div className="highlight-card">
-              <img src="/Kos Image/backyard.jpg" alt="Housing Security 1" />
+              <img src="/Kos Image/backyard.jpg" alt="Halaman Samping" />
               <div className="highlight-info">
                 <h3>Halaman Samping</h3>
                 <p>Halaman lingkungan yang asri tepat berada depan pintu kamar anda.</p>
               </div>
             </div>
             <div className="highlight-card">
-              <img src="/Kos Image/IMG20230801070610(1).jpg" alt="Housing Security 2" />
+              <img src="/Kos Image/IMG20230801070610(1).jpg" alt="Tanaman Rindang" />
               <div className="highlight-info">
-                <h3>Tanaman yang rindang</h3>
+                <h3>Tanaman yang Rindang</h3>
                 <p>Suasana yang sejuk dan nyaman.</p>
               </div>
             </div>
             <div className="highlight-card">
-              <img src="/Kos Image/IMG20250614203930.jpg" alt="Housing Security 3" />
+              <img src="/Kos Image/IMG20250614203930.jpg" alt="Lampu Taman" />
               <div className="highlight-info">
                 <h3>Lampu Taman</h3>
                 <p>Pencahayaan yang nyaman di malam hari.</p>
               </div>
             </div>
           </div>
+
+          {/* 4 card tambahan — collapsible wrapper di bawah tombol */}
+          <div className={`highlights-extra-wrapper${showMore ? ' is-open' : ''}`}>
+            <div className="highlights-grid">
+              <div className="highlight-card">
+                <img src="/Kos Image/IMG20220726101804.jpg" alt="Suasana Pagi" />
+                <div className="highlight-info">
+                  <h3>Suasana Pagi</h3>
+                  <p>Lingkungan yang tenang dan asri di pagi hari.</p>
+                </div>
+              </div>
+              <div className="highlight-card">
+                <img src="/Kos Image/IMG20220726101834.jpg" alt="Area Terbuka" />
+                <div className="highlight-info">
+                  <h3>Area Terbuka</h3>
+                  <p>Ruang terbuka hijau yang membuat udara segar setiap saat.</p>
+                </div>
+              </div>
+              <div className="highlight-card">
+                <img src="/Kos Image/IMG20220726102844.jpg" alt="Lingkungan Nyaman" />
+                <div className="highlight-info">
+                  <h3>Lingkungan Nyaman</h3>
+                  <p>Suasana tenang ideal untuk istirahat dan produktivitas.</p>
+                </div>
+              </div>
+              <div className="highlight-card highlight-card--schematic">
+                <img src="/Kos Image/image.png" alt="Denah Kamar" />
+              </div>
+            </div>
+          </div>
+
+          {/* Tombol selalu di bawah konten yang terlihat */}
+          <div className="gallery-toggle-wrap">
+            <button
+              className="gallery-toggle-btn"
+              onClick={() => {
+                if (showMore) {
+                  // Tutup dulu, lalu scroll ke atas section galeri
+                  setShowMore(false);
+                  const target = document.getElementById('highlights');
+                  if (target && lenisRef.current) {
+                    setTimeout(() => {
+                      lenisRef.current!.scrollTo(target, { offset: -90, duration: 1.2 });
+                    }, 60);
+                  }
+                } else {
+                  setShowMore(true);
+                }
+              }}
+            >
+              {showMore ? (
+                <><i className="fas fa-chevron-up"></i> Tampilkan Lebih Sedikit</>
+              ) : (
+                <><i className="fas fa-chevron-down"></i> Tampilkan Lebih Banyak</>
+              )}
+            </button>
+          </div>
+
         </div>
       </motion.section>
 
@@ -317,7 +383,7 @@ function App() {
         </div>
       </motion.section>
 
-      {/* Floating WhatsApp Button (Mobile Only) */}
+      {/* Floating WhatsApp Button (All Screens) */}
       <a
         href="https://wa.me/628123627647"
         className="wa-float"
@@ -342,10 +408,19 @@ function App() {
             <p><i className="fas fa-phone-alt" style={{ marginRight: '10px', color: 'var(--green)' }}></i> +62 812 3627 647</p>
           </div>
             
-          <div className="footer-col">
-            <h3 className="footer-title">Sosial Media</h3>
-            <div className="social-icons">
-              <a href="https://wa.me/628123627647" target="_blank" aria-label="WhatsApp" rel="noreferrer"><i className="fab fa-whatsapp"></i></a>
+          <div className="footer-col footer-col--map">
+            <h3 className="footer-title"></h3>
+            <div className="footer-map-wrapper">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7889.341791694683!2d115.2080534752927!3d-8.627559040033274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd23f8e6e61e293%3A0x68e329c09799b47e!2sKos%20Vaikunta!5e0!3m2!1sen!2sid!4v1773383382876!5m2!1sen!2sid"
+                width="100%"
+                height="200"
+                style={{ border: 0, borderRadius: '12px' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Peta Lokasi Kos Vaikunta"
+              ></iframe>
             </div>
           </div>
         </div>
