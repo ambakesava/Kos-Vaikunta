@@ -7,6 +7,7 @@ import './App.css';
 function App() {
   const lenisRef = useRef<Lenis | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
@@ -35,6 +36,7 @@ function App() {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
+    setMenuOpen(false);
     const target = document.getElementById(targetId);
     if (target && lenisRef.current) {
       lenisRef.current.scrollTo(target, { offset: -80, duration: 1.5 });
@@ -99,7 +101,39 @@ function App() {
             <a href="https://maps.app.goo.gl/nZQJyQgdPfpoVzJ27" className="btn-outline" target="_blank" rel="noreferrer">Peta Lokasi</a>
             <a href="https://wa.me/628123627647" className="btn-solid" target="_blank" rel="noreferrer">WhatsApp</a>
           </div>
+
+          {/* Hamburger Button — mobile only */}
+          <button
+            className={`hamburger${menuOpen ? ' is-open' : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
+
+        {/* Mobile Drawer */}
+        <div className={`mobile-drawer${menuOpen ? ' is-open' : ''}`}>
+          <ul className="mobile-nav-links">
+            <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')}>Home</a></li>
+            <li><a href="#about" onClick={(e) => handleNavClick(e, 'about')}>Informasi</a></li>
+            <li><a href="#highlights" onClick={(e) => handleNavClick(e, 'highlights')}>Galeri</a></li>
+            <li><a href="#amenities" onClick={(e) => handleNavClick(e, 'amenities')}>Fasilitas</a></li>
+          </ul>
+          <a
+            href="https://maps.app.goo.gl/nZQJyQgdPfpoVzJ27"
+            className="mobile-map-btn"
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => setMenuOpen(false)}
+          >
+            <i className="fas fa-map-marker-alt"></i> Peta Lokasi
+          </a>
+        </div>
+        {/* Overlay backdrop */}
+        {menuOpen && <div className="drawer-overlay" onClick={() => setMenuOpen(false)} />}
       </nav>
 
       {/* Hero Section */}
@@ -184,7 +218,7 @@ function App() {
             </div>
           </div>
           
-          <div className="property-image">
+          <div className="property-image mobile-hide">
             <img src="/Kos Image/IMG20220726104420.jpg" alt="Suasana Kamar atau Halaman Kos" />
           </div>
         </div>
@@ -282,6 +316,17 @@ function App() {
           </div>
         </div>
       </motion.section>
+
+      {/* Floating WhatsApp Button (Mobile Only) */}
+      <a
+        href="https://wa.me/628123627647"
+        className="wa-float"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Hubungi via WhatsApp"
+      >
+        <i className="fab fa-whatsapp"></i>
+      </a>
 
       {/* Footer Section */}
       <footer className="site-footer">
